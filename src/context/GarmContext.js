@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { createContext, useState, useCallback } from "react";
 
-export const GarmsContext = React.createContext(null);
+export const GarmsContext = createContext(null);
 
 export function GarmsProvider(props) {
   const [garms, setGarms] = useState([
@@ -89,7 +89,7 @@ export function GarmsProvider(props) {
     setGarms((curr) => [...curr, toAdd]);
   }, []);
   const deleteGarm = useCallback((id) => {
-    setFavorites((curr) => curr.filter((val) => val.id !== id));
+    setGarms((curr) => curr.filter((val) => val.id !== id));
   }, []);
   return (
     <GarmsContext.Provider value={{ garms, AddGarm, deleteGarm }}>
