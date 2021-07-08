@@ -13,6 +13,7 @@ export function GarmsProvider(props) {
       season: "SS",
       id: "1",
       img: "./images/peacepants.webp",
+      own: "false",
     },
     {
       title: "Straight Leg Denim",
@@ -23,6 +24,7 @@ export function GarmsProvider(props) {
       season: "FW",
       id: "2",
       img: "./images/jeans.jpg",
+      own: "true",
     },
     {
       title: "Olive Chore Coat",
@@ -33,6 +35,7 @@ export function GarmsProvider(props) {
       season: "FW",
       id: "3",
       img: "./images/paynterjacket.webp",
+      own: "true",
     },
     {
       title: "Polite Pullover",
@@ -43,6 +46,7 @@ export function GarmsProvider(props) {
       season: "FW",
       id: "4",
       img: "./images/politepullover.webp",
+      own: "false",
     },
     {
       title: "Maritime Shirt",
@@ -53,6 +57,7 @@ export function GarmsProvider(props) {
       season: "all",
       id: "5",
       img: "./images/denimshirt.jpg",
+      own: "true",
     },
     {
       title: "White T-Shirt",
@@ -63,6 +68,7 @@ export function GarmsProvider(props) {
       season: "all",
       id: "6",
       img: "./images/whitetee.jpg",
+      own: "true",
     },
     {
       title: "Work Boots",
@@ -73,6 +79,7 @@ export function GarmsProvider(props) {
       season: "FW",
       id: "7",
       img: "./images/boots.jpg",
+      own: "false",
     },
     {
       title: "White High-tops",
@@ -83,6 +90,7 @@ export function GarmsProvider(props) {
       season: "all",
       id: "8",
       img: "./images/converse.jpg",
+      own: "true",
     },
   ]);
   const addGarm = useCallback((toAdd) => {

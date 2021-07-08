@@ -6,23 +6,25 @@ const AddGarm = () => {
   const [garmType, setGarmType] = useState("top");
   const [garmCondition, setGarmCondition] = useState("new");
   const [garmBrand, setGarmBrand] = useState("");
-  const [garmPrice, setGarmPrice] = useState(0);
+  const [garmPrice, setGarmPrice] = useState("");
   const [garmImg, setGarmImg] = useState("");
   const [garmSeason, setGarmSeason] = useState("all");
+  const [garmOwn, setGarmOwn] = useState("true");
   const { garms, addGarm } = useContext(GarmsContext);
   const clearForm = () => {
     setGarmName("");
     setGarmType("top");
     setGarmBrand("");
-    setGarmPrice(0);
+    setGarmPrice("");
     setGarmCondition("new");
     setGarmSeason("all");
     setGarmImg("");
+    setGarmOwn(true);
   };
   return (
     <>
       <form>
-        {/* Form to input new garment info. Should include Name, Brand, Price Paid, Type, & Condition, and Season */}
+        {/* Form to input new garment info. Should include Name, Brand, Price Paid, Type, & Condition, and Season, and Owned/Want */}
         <h1>Add a Garm!</h1>
         {/* Garment Name */}
         <div>
@@ -59,13 +61,11 @@ const AddGarm = () => {
           <label htmlFor="garmType">Garment Type: </label>
           <select
             name="garmType"
-            // defaultValue="top"
+            defaultValue="top"
             value={garmType}
             onChange={(e) => setGarmType(e.target.value)}
           >
-            <option value="top" selected="selected">
-              Top
-            </option>
+            <option value="top">Top</option>
             <option value="bottom">Bottoms</option>
             <option value="outerwear">Outerwear</option>
             <option value="footwear">Footwear</option>
@@ -77,11 +77,10 @@ const AddGarm = () => {
           <select
             name="garmSeason"
             value={garmSeason}
+            defaultValue="all"
             onChange={(e) => setGarmSeason(e.target.value)}
           >
-            <option value="all" selected="selected">
-              All Seasons
-            </option>
+            <option value="all">All Seasons</option>
             <option value="SS">Spring/Summer</option>
             <option value="FW">Fall/Winter</option>
           </select>
@@ -89,30 +88,59 @@ const AddGarm = () => {
         {/* Condition */}
         <div>
           <input
+            checked={garmCondition === "new"}
             id="new"
-            defaultChecked="checked"
             type="radio"
             name="condition"
             value="new"
-            onClick={(e) => setGarmCondition(e.target.value)}
+            onChange={(e) => setGarmCondition(e.target.value)}
           ></input>
           <label htmlFor="new">New</label>
           <input
+            checked={garmCondition === "used"}
             id="used"
             type="radio"
             name="condition"
             value="used"
-            onClick={(e) => setGarmCondition(e.target.value)}
+            onChange={(e) => setGarmCondition(e.target.value)}
           ></input>
           <label htmlFor="used">Secondhand</label>
           <input
+            checked={garmCondition === "vintage"}
             id="vintage"
             type="radio"
             name="condition"
             value="vintage"
-            onClick={(e) => setGarmCondition(e.target.value)}
+            onChange={(e) => setGarmCondition(e.target.value)}
           ></input>
           <label htmlFor="vintage">Vintage</label>
+        </div>
+        {/* Owned */}
+        <div>
+          <input
+            checked={garmOwn === "true"}
+            id="own"
+            type="radio"
+            name="owned"
+            value="true"
+            onChange={(e) => {
+              console.log(garmOwn);
+              setGarmOwn(e.target.value);
+            }}
+          ></input>
+          <label htmlFor="own">I Own This</label>
+          <input
+            checked={garmOwn === "false"}
+            id="want"
+            type="radio"
+            name="owned"
+            value="false"
+            onChange={(e) => {
+              console.log(garmOwn);
+              setGarmOwn(e.target.value);
+            }}
+          ></input>
+          <label htmlFor="want">I Want This</label>
         </div>
         {/* Image Link */}
         <div>
@@ -137,10 +165,11 @@ const AddGarm = () => {
               season: garmSeason,
               id: "1",
               img: garmImg,
+              own: garmOwn,
             });
             clearForm();
             console.log(
-              `Name: ${garmName}, Brand: ${garmBrand}, Price: ${garmPrice}, Type: ${garmType}, Condition: ${garmCondition}, Img: ${garmImg}`
+              `Name: ${garmName}, Brand: ${garmBrand}, Price: ${garmPrice}, Type: ${garmType}, Condition: ${garmCondition}, Img: ${garmImg}, Own: ${garmOwn}`
             );
           }}
         >
