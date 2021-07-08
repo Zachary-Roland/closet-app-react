@@ -85,14 +85,14 @@ export function GarmsProvider(props) {
       img: "./images/converse.jpg",
     },
   ]);
-  const AddGarm = useCallback((toAdd) => {
+  const addGarm = useCallback((toAdd) => {
     setGarms((curr) => [...curr, toAdd]);
   }, []);
   const deleteGarm = useCallback((id) => {
     setGarms((curr) => curr.filter((val) => val.id !== id));
   }, []);
   return (
-    <GarmsContext.Provider value={{ garms, AddGarm, deleteGarm }}>
+    <GarmsContext.Provider value={{ garms, addGarm, deleteGarm }}>
       {props.children}
     </GarmsContext.Provider>
   );
