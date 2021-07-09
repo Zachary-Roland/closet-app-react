@@ -13,7 +13,7 @@ export function GarmsProvider(props) {
       season: "SS",
       id: "1",
       img: "./images/peacepants.webp",
-      own: "false",
+      own: false,
     },
     {
       title: "Straight Leg Denim",
@@ -24,7 +24,7 @@ export function GarmsProvider(props) {
       season: "FW",
       id: "2",
       img: "./images/jeans.jpg",
-      own: "true",
+      own: true,
     },
     {
       title: "Olive Chore Coat",
@@ -35,7 +35,7 @@ export function GarmsProvider(props) {
       season: "FW",
       id: "3",
       img: "./images/paynterjacket.webp",
-      own: "true",
+      own: true,
     },
     {
       title: "Polite Pullover",
@@ -46,7 +46,7 @@ export function GarmsProvider(props) {
       season: "FW",
       id: "4",
       img: "./images/politepullover.webp",
-      own: "false",
+      own: false,
     },
     {
       title: "Maritime Shirt",
@@ -57,7 +57,7 @@ export function GarmsProvider(props) {
       season: "all",
       id: "5",
       img: "./images/denimshirt.jpg",
-      own: "true",
+      own: true,
     },
     {
       title: "White T-Shirt",
@@ -68,7 +68,7 @@ export function GarmsProvider(props) {
       season: "all",
       id: "6",
       img: "./images/whitetee.jpg",
-      own: "true",
+      own: true,
     },
     {
       title: "Work Boots",
@@ -79,7 +79,7 @@ export function GarmsProvider(props) {
       season: "FW",
       id: "7",
       img: "./images/boots.jpg",
-      own: "false",
+      own: false,
     },
     {
       title: "White High-tops",
@@ -90,7 +90,7 @@ export function GarmsProvider(props) {
       season: "all",
       id: "8",
       img: "./images/converse.jpg",
-      own: "true",
+      own: true,
     },
   ]);
   const addGarm = useCallback((toAdd) => {
@@ -99,8 +99,31 @@ export function GarmsProvider(props) {
   const deleteGarm = useCallback((id) => {
     setGarms((curr) => curr.filter((val) => val.id !== id));
   }, []);
+  const edit = useCallback((id, key, newVal) => {
+    setGarms((curr) =>
+      curr.map((val) => {
+        if (val.id === id) {
+          let copy = { ...val };
+          copy[key] = newVal;
+        }
+        return val;
+      })
+    );
+  }, []);
+  const toggleOwn = useCallback(
+    (id, own) => {
+      edit(id, "own", !own);
+    },
+    [edit]
+  );
+  const changeName = useCallback(
+    (id, newName) => {
+      edit(id, "name", newName);
+    },
+    [edit]
+  );
   return (
-    <GarmsContext.Provider value={{ garms, addGarm, deleteGarm }}>
+    <GarmsContext.Provider value={{ garms, addGarm, deleteGarm, toggleOwn }}>
       {props.children}
     </GarmsContext.Provider>
   );

@@ -165,7 +165,7 @@ const AddGarm = () => {
               season: garmSeason,
               id: "1",
               img: garmImg,
-              own: garmOwn,
+              own: garmOwn === "true" ? true : false,
             });
             clearForm();
             console.log(

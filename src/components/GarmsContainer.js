@@ -13,12 +13,12 @@ const GarmsContainer = () => {
   //   return favorites.map((val) => val.id);
   // }, [favorites]);
   const [closetSelect, setClosetSelect] = useState("own");
-  const { garms } = useContext(GarmsContext);
+  const { garms, deleteGarm, toggleOwn } = useContext(GarmsContext);
   const ownedGarms = useMemo(() => {
-    return garms.filter((val) => val.own === "true");
+    return garms.filter((val) => val.own === true);
   }, [garms]);
   const wantedGarms = useMemo(() => {
-    return garms.filter((val) => val.own === "false");
+    return garms.filter((val) => val.own === false);
   }, [garms]);
   return (
     <>
@@ -36,8 +36,22 @@ const GarmsContainer = () => {
       </div>
       {/* expected outcome w/ hardcoded garm state: 3 wanted, 5 owned */}
       {closetSelect === "own"
-        ? ownedGarms.map(() => <GarmDisplay />)
-        : wantedGarms.map(() => <GarmDisplay />)}
+        ? ownedGarms.map((val) => (
+            <GarmDisplay
+              key={val.id}
+              garm={val}
+              deleteGarm={deleteGarm}
+              toggleOwn={toggleOwn}
+            />
+          ))
+        : wantedGarms.map((val) => (
+            <GarmDisplay
+              key={val.id}
+              garm={val}
+              deleteGarm={deleteGarm}
+              toggleOwn={toggleOwn}
+            />
+          ))}
     </>
   );
 };
