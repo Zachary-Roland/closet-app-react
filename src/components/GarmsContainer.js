@@ -2,18 +2,16 @@ import React, { useContext, useMemo, useState } from "react";
 import GarmDisplay from "./GarmDisplay";
 import { GarmsContext } from "../context/GarmContext";
 
-// ! This container will filter and show either owned or wanted garments
-// TODO add state and selector to pick between owned and wanted
-// TODO 2 conditional renders GarmDisplay. One maps through owned garms, other through wanted garms.
+//  This container will filter and show either owned or wanted garments
+//  add state and selector to pick between owned and wanted
+//  2 conditional renders GarmDisplay. One maps through owned garms, other through wanted garms.
 
 const GarmsContainer = () => {
-  // ! the map function will be simlilar to this function from the todo app
-  // ! but for owned key instead of ID
-  // const faveIds = useMemo(() => {
-  //   return favorites.map((val) => val.id);
-  // }, [favorites]);
+  // closetSelect state is used to show either owned or wanted items.
   const [closetSelect, setClosetSelect] = useState("own");
   const { garms, deleteGarm, toggleOwn } = useContext(GarmsContext);
+  // TODO these memos need to update when the toggleOwn function is run.
+  // ! Currently they update but are not moved into the other array..
   const ownedGarms = useMemo(() => {
     return garms.filter((val) => val.own === true);
   }, [garms]);
