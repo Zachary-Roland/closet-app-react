@@ -3,12 +3,10 @@ import AddGarm from "./components/AddGarmPage";
 import {
   BrowserRouter as Router,
   NavLink,
-  Redirect,
+  // Redirect,
   Route,
   Switch,
 } from "react-router-dom";
-import GarmDisplay from "./components/GarmDisplay";
-import GarmsContainer from "./components/GarmsContainer";
 import OutfitBuilder from "./components/OutfitBuilderPage";
 import Wardrobe from "./components/WardrobePage";
 
