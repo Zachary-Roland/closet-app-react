@@ -19,7 +19,7 @@ const AddGarm = () => {
     setGarmCondition("new");
     setGarmSeason("all");
     setGarmImg("");
-    setGarmOwn(true);
+    setGarmOwn("true");
   };
   return (
     <>
@@ -118,11 +118,11 @@ const AddGarm = () => {
         {/* Owned */}
         <div>
           <input
-            checked={garmOwn === "true"}
+            checked={garmOwn === "true" ? true : false}
             id="own"
             type="radio"
             name="owned"
-            value="true"
+            value={true}
             onChange={(e) => {
               console.log(garmOwn);
               setGarmOwn(e.target.value);
@@ -130,11 +130,11 @@ const AddGarm = () => {
           ></input>
           <label htmlFor="own">I Own This</label>
           <input
-            checked={garmOwn === "false"}
+            checked={garmOwn === "false" ? true : false}
             id="want"
             type="radio"
             name="owned"
-            value="false"
+            value={false}
             onChange={(e) => {
               console.log(garmOwn);
               setGarmOwn(e.target.value);
@@ -163,7 +163,7 @@ const AddGarm = () => {
               cost: garmPrice,
               condition: garmCondition,
               season: garmSeason,
-              id: "1",
+              id: "9",
               img: garmImg,
               own: garmOwn === "true" ? true : false,
             });
