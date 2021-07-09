@@ -10,7 +10,11 @@ const GarmDisplay = ({ garm, deleteGarm, toggleOwn }) => {
       <h5>
         {garm.type}, {garm.season}
       </h5>
-      <img src={garm.img} style={{ width: 300 }}></img>
+      <img
+        src={garm.img}
+        alt={`${garm.title}, ${garm.brand}, ${garm.condition}`}
+        style={{ width: 300 }}
+      ></img>
       <div>
         <button
           type="button"
