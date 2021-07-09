@@ -100,15 +100,19 @@ export function GarmsProvider(props) {
     setGarms((curr) => curr.filter((val) => val.id !== id));
   }, []);
   const edit = useCallback((id, key, newVal) => {
-    setGarms((curr) =>
-      curr.map((val) => {
+    setGarms((curr) => {
+      return curr.map((val) => {
         if (val.id === id) {
           let copy = { ...val };
+          console.log(copy);
           copy[key] = newVal;
+          console.log(copy);
+          //   console.log(newVal, copy, copy[key]);
+          return (copy[key] = newVal);
         }
         return val;
-      })
-    );
+      });
+    });
   }, []);
   const toggleOwn = useCallback(
     (id, own) => {
@@ -122,6 +126,7 @@ export function GarmsProvider(props) {
     },
     [edit]
   );
+
   return (
     <GarmsContext.Provider value={{ garms, addGarm, deleteGarm, toggleOwn }}>
       {props.children}
