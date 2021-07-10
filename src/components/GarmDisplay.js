@@ -1,6 +1,12 @@
 import React from "react";
 
-const GarmDisplay = ({ garm, deleteGarm, toggleOwn }) => {
+const GarmDisplay = ({
+  garm,
+  deleteGarm,
+  toggleOwn,
+  wantedGarms,
+  ownedGarms,
+}) => {
   return (
     <div>
       <h2>{garm.title}</h2>
@@ -31,6 +37,8 @@ const GarmDisplay = ({ garm, deleteGarm, toggleOwn }) => {
             onClick={(e) => {
               e.preventDefault();
               toggleOwn(garm.id, garm.own);
+              console.log(wantedGarms);
+              console.log(ownedGarms);
               // console.log(garm.own);
             }}
           >
@@ -42,6 +50,8 @@ const GarmDisplay = ({ garm, deleteGarm, toggleOwn }) => {
             onClick={(e) => {
               e.preventDefault();
               toggleOwn(garm.id, garm.own);
+              console.log(wantedGarms);
+              console.log(ownedGarms);
               // console.log(garm.own);
             }}
           >

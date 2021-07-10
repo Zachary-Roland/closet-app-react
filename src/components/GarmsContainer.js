@@ -40,6 +40,8 @@ const GarmsContainer = () => {
               garm={val}
               deleteGarm={deleteGarm}
               toggleOwn={toggleOwn}
+              wantedGarms={wantedGarms}
+              ownedGarms={ownedGarms}
             />
           ))
         : wantedGarms.map((val) => (
@@ -48,6 +50,8 @@ const GarmsContainer = () => {
               garm={val}
               deleteGarm={deleteGarm}
               toggleOwn={toggleOwn}
+              ownedGarms={ownedGarms}
+              wantedGarms={wantedGarms}
             />
           ))}
     </>
