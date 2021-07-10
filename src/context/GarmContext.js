@@ -108,7 +108,8 @@ export function GarmsProvider(props) {
           copy[key] = newVal;
           console.log(copy);
           //   console.log(newVal, copy, copy[key]);
-          return (copy[key] = newVal);
+          //   return (copy[key] = newVal);
+          return copy;
         }
         return val;
       });

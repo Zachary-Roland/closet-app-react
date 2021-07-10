@@ -14,10 +14,10 @@ const GarmsContainer = () => {
   // ! Currently they update but are not moved into the other array..
   const ownedGarms = useMemo(() => {
     return garms.filter((val) => val.own === true);
-  }, [garms]);
+  }, [garms, closetSelect]);
   const wantedGarms = useMemo(() => {
     return garms.filter((val) => val.own === false);
-  }, [garms]);
+  }, [garms, closetSelect]);
   return (
     <>
       <div>
