@@ -10,6 +10,7 @@ import {
   Switch,
 } from "react-router-dom";
 import { AppBar, Tabs, Tab, Box, Typography } from "@material-ui/core";
+import Login from "./components/Login";
 import AddGarm from "./components/AddGarmPage";
 import OutfitBuilder from "./components/OutfitBuilderPage";
 import Wardrobe from "./components/WardrobePage";
@@ -43,16 +44,6 @@ function TabPanel(props) {
 
 function App() {
   const [value, setValue] = useState(0);
-
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
-  // const useStyles = makeStyles((theme) => ({
-  //   root: {
-  //     flexGrow: 1,
-  //     backgroundColor: theme.palette.background.paper,
-  //   },
-  // }));
   return (
     <Router>
       <nav>
@@ -82,27 +73,6 @@ function App() {
               {...a11yProps(2)}
             />
           </Tabs>
-          {/* <NavLink
-            activeClassName="active"
-            className="link text-center"
-            to="/addGarm"
-          >
-            Add Garm
-          </NavLink>
-          <NavLink
-            activeClassName="active"
-            className="link text-center"
-            to="/myGarms"
-          >
-            My Garms
-          </NavLink>
-          <NavLink
-            activeClassName="active"
-            className="link text-center"
-            to="/fitBuilder"
-          >
-            Fit Builder
-          </NavLink> */}
         </AppBar>
       </nav>
       <main>
