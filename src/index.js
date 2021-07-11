@@ -3,12 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { GarmsProvider } from "./context";
+import { GarmsProvider, UserProvider } from "./context";
 
 ReactDOM.render(
-  <GarmsProvider>
-    <App />
-  </GarmsProvider>,
+  <UserProvider>
+    <GarmsProvider>
+      <App />
+    </GarmsProvider>
+  </UserProvider>,
   document.getElementById("root")
 );
 

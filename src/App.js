@@ -1,7 +1,6 @@
 import "./App.css";
-import "@fontsource/roboto";
-import React, { useState, useStyles } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+// Imports for React
+import React, { useContext, useState, useStyles } from "react";
 import {
   BrowserRouter as Router,
   NavLink,
@@ -9,7 +8,14 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+// Imports for Material UI
+import "@fontsource/roboto";
+import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Tabs, Tab, Box, Typography } from "@material-ui/core";
+// Imports for Context
+import { UserContext } from "./context";
+// Imports for Components
+import ProtectedRoute from "./shared/ProtectedRoute";
 import Login from "./components/Login";
 import AddGarm from "./components/AddGarmPage";
 import OutfitBuilder from "./components/OutfitBuilderPage";
@@ -43,40 +49,58 @@ function TabPanel(props) {
 }
 
 function App() {
+  // Local value state used for Tabs Navigation
   const [value, setValue] = useState(0);
+  // bringing in User context
+  const { user, logout } = useContext(UserContext);
   return (
     <Router>
       <nav>
         <AppBar position="sticky">
-          <Tabs
-            value={value}
-            indicatorColor="primary"
-            // textColor="white"
-            variant="fullWidth"
-          >
-            <Tab
-              label="Add Garm"
-              to="/addGarm"
-              component={NavLink}
-              {...a11yProps(0)}
-            />
-            <Tab
-              label="My Garms"
-              to="/myGarms"
-              component={NavLink}
-              {...a11yProps(1)}
-            />
-            <Tab
-              label="Fits"
-              to="/fitBuilder"
-              component={NavLink}
-              {...a11yProps(2)}
-            />
-          </Tabs>
+          {!user && (
+            <Tabs value={value} indicatorColor="secondary" variant="fullWidth">
+              <Tab
+                label="Login"
+                to="/login"
+                component={NavLink}
+                {...a11yProps(0)}
+              />
+            </Tabs>
+          )}
+          {user && (
+            <Tabs
+              value={value}
+              indicatorColor="secondary"
+              // textColor="white"
+              variant="fullWidth"
+            >
+              <Tab
+                label="Add Garm"
+                to="/addGarm"
+                component={NavLink}
+                {...a11yProps(1)}
+              />
+              <Tab
+                label="My Garms"
+                to="/myGarms"
+                component={NavLink}
+                {...a11yProps(2)}
+              />
+              <Tab
+                label="Fits"
+                to="/fitBuilder"
+                component={NavLink}
+                {...a11yProps(3)}
+              />
+            </Tabs>
+          )}
         </AppBar>
       </nav>
       <main>
         <Switch>
+          <ProtectedRoute path="/login" reqUser={false} loggedInUser={user}>
+            <Login />
+          </ProtectedRoute>
           <Route path="/addGarm">
             {/* <TabPanel value={value} index={0}> */}
             <AddGarm />
