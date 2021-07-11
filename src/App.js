@@ -4,7 +4,7 @@ import React, { useContext, useState, useStyles } from "react";
 import {
   BrowserRouter as Router,
   NavLink,
-  // Redirect,
+  Redirect,
   Route,
   Switch,
 } from "react-router-dom";
@@ -118,20 +118,23 @@ function App() {
           <ProtectedRoute path="/login" reqUser={false} loggedInUser={user}>
             <Login />
           </ProtectedRoute>
-          <Route path="/addGarm">
+          <ProtectedRoute path="/addGarm" reqUser={true}>
             {/* <TabPanel value={value} index={0}> */}
             <AddGarm />
             {/* </TabPanel> */}
-          </Route>
-          <Route path="/myGarms">
+          </ProtectedRoute>
+          <ProtectedRoute path="/myGarms" reqUser={true}>
             {/* <TabPanel value={value} index={1}> */}
             <Wardrobe />
             {/* </TabPanel> */}
-          </Route>
-          <Route path="/fitBuilder">
+          </ProtectedRoute>
+          <ProtectedRoute path="/fitBuilder" reqUser={true}>
             {/* <TabPanel value={value} index={2}> */}
             <OutfitBuilder />
             {/* </TabPanel> */}
+          </ProtectedRoute>
+          <Route path="*">
+            <Redirect to="/login" />
           </Route>
         </Switch>
       </main>

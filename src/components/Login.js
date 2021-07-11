@@ -31,7 +31,6 @@ const Login = () => {
         </div>
         <div className="margin50">
           <TextField
-            className="loginField"
             variant="outlined"
             type="password"
             error={errorPass}

@@ -3,8 +3,8 @@ import { Route, Redirect } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 function ProtectedRoute({ path, reqUser, children }) {
-  const { username } = useContext(UserContext);
-  if ((username && reqUser) || (!username && !reqUser)) {
+  const { user } = useContext(UserContext);
+  if ((user && reqUser) || (!user && !reqUser)) {
     return <Route path={path}>{children}</Route>;
   } else {
     return <Redirect to={reqUser ? "/login" : "/addGarm"} />;
