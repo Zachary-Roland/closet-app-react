@@ -41,16 +41,16 @@ const AddGarm = () => {
     setGarmID(garmID + 1);
   };
   return (
-    <Paper style={{ margin: 10, padding: 10 }}>
+    <Paper className="margin10">
       <form>
         {/* Form to input new garment info. Should include Name, Brand, Price Paid, Type, & Condition, and Season, and Owned/Want */}
-        <div className="formItem">
+        <div className="margin10">
           <Typography variant="h3" component="h1">
             Add a Garm!
           </Typography>
         </div>
         {/* Garment Name */}
-        <div className="formItem">
+        <div className="margin10">
           <TextField
             variant="outlined"
             label="Garment Name:"
@@ -60,7 +60,7 @@ const AddGarm = () => {
           />
         </div>
         {/* Brand */}
-        <div className="formItem">
+        <div className="margin10">
           <TextField
             variant="outlined"
             label="Brand:"
@@ -70,7 +70,7 @@ const AddGarm = () => {
           />
         </div>
         {/* Price */}
-        <div className="formItem">
+        <div className="margin10">
           <TextField
             variant="outlined"
             label="Price:"
@@ -85,7 +85,7 @@ const AddGarm = () => {
           />
         </div>
         {/* Type */}
-        <div className="formItem">
+        <div className="margin10">
           <FormControl style={{ minWidth: 120 }}>
             <InputLabel id="garmTypeLabel">Garment Type:</InputLabel>
             <Select
@@ -103,7 +103,7 @@ const AddGarm = () => {
           </FormControl>
         </div>
         {/* Season */}
-        <div className="formItem">
+        <div className="margin10">
           <FormControl style={{ minWidth: 120 }}>
             <InputLabel id="garmSeasonLabel">Season:</InputLabel>
             <Select
@@ -119,7 +119,7 @@ const AddGarm = () => {
           </FormControl>
         </div>
         {/* Condition */}
-        <div className="formItem">
+        <div className="margin10">
           <FormControl component="fieldset">
             <FormLabel component="legend">Condition:</FormLabel>
             <RadioGroup
@@ -139,7 +139,7 @@ const AddGarm = () => {
           </FormControl>
         </div>
         {/* Owned */}
-        <div className="formItem">
+        <div className="margin10">
           <FormControl component="fieldset">
             <FormLabel component="legend">Owned:</FormLabel>
             <RadioGroup
@@ -166,7 +166,7 @@ const AddGarm = () => {
           </FormControl>
         </div>
         {/* Image Link */}
-        <div className="formItem">
+        <div className="margin10">
           <TextField
             variant="outlined"
             label="Link to an Image:"

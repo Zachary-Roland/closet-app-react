@@ -51,6 +51,9 @@ function TabPanel(props) {
 function App() {
   // Local value state used for Tabs Navigation
   const [value, setValue] = useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   // bringing in User context
   const { user, logout } = useContext(UserContext);
   return (
@@ -58,7 +61,12 @@ function App() {
       <nav>
         <AppBar position="sticky">
           {!user && (
-            <Tabs value={value} indicatorColor="secondary" variant="fullWidth">
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="secondary"
+              variant="fullWidth"
+            >
               <Tab
                 label="Login"
                 to="/login"
@@ -91,6 +99,15 @@ function App() {
                 to="/fitBuilder"
                 component={NavLink}
                 {...a11yProps(3)}
+              />
+              <Tab
+                label="Logout"
+                to="/login"
+                component={NavLink}
+                onClick={() => {
+                  logout();
+                }}
+                {...a11yProps(4)}
               />
             </Tabs>
           )}

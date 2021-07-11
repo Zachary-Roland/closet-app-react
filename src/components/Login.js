@@ -14,7 +14,7 @@ const Login = () => {
         <Typography variant="h3" component="h3">
           Login
         </Typography>
-        <div className="loginItem">
+        <div className="margin50">
           <TextField
             variant="outlined"
             label="Username:"
@@ -22,7 +22,7 @@ const Login = () => {
             onChange={(e) => setUserInput(e.target.value)}
           />
         </div>
-        <div className="loginItem">
+        <div className="margin50">
           <TextField
             variant="outlined"
             type="password"
