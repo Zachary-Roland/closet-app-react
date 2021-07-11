@@ -1,8 +1,26 @@
 import React, { useContext, useState } from "react";
 import { GarmsContext } from "../context/GarmContext";
+import {
+  Paper,
+  Typography,
+  TextField,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  InputLabel,
+  MenuItem,
+  Select,
+  Radio,
+  Button,
+  Fab,
+} from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import { InputAdornment } from "@material-ui/core";
 
 const AddGarm = () => {
   const [garmName, setGarmName] = useState("");
+  const [garmID, setGarmID] = useState(9);
   const [garmType, setGarmType] = useState("top");
   const [garmCondition, setGarmCondition] = useState("new");
   const [garmBrand, setGarmBrand] = useState("");
@@ -20,139 +38,144 @@ const AddGarm = () => {
     setGarmSeason("all");
     setGarmImg("");
     setGarmOwn("true");
+    setGarmID(garmID + 1);
   };
   return (
-    <>
+    <Paper style={{ margin: 10, padding: 10 }}>
       <form>
         {/* Form to input new garment info. Should include Name, Brand, Price Paid, Type, & Condition, and Season, and Owned/Want */}
-        <h1>Add a Garm!</h1>
+        <div className="formItem">
+          <Typography variant="h3" component="h1">
+            Add a Garm!
+          </Typography>
+        </div>
         {/* Garment Name */}
-        <div>
-          <label htmlFor="garmName">Garment Name: </label>
-          <input
-            id="garmName"
+        <div className="formItem">
+          <TextField
+            variant="outlined"
+            label="Garment Name:"
             value={garmName}
-            placeholder={`"White Tee"`}
+            size="small"
             onChange={(e) => setGarmName(e.target.value)}
-          ></input>
+          />
         </div>
         {/* Brand */}
-        <div>
-          <label htmlFor="garmBrand">Brand: </label>
-          <input
-            id="garmBrand"
+        <div className="formItem">
+          <TextField
+            variant="outlined"
+            label="Brand:"
             value={garmBrand}
-            placeholder={`"Hanes"`}
             onChange={(e) => setGarmBrand(e.target.value)}
-          ></input>
+            size="small"
+          />
         </div>
         {/* Price */}
-        <div>
-          <label htmlFor="garmPrice">Price: $</label>
-          <input
-            id="garmPrice"
+        <div className="formItem">
+          <TextField
+            variant="outlined"
+            label="Price:"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            }}
+            size="small"
             value={garmPrice}
-            placeholder={`25`}
             onChange={(e) => setGarmPrice(e.target.value)}
-          ></input>
+          />
         </div>
         {/* Type */}
-        <div>
-          <label htmlFor="garmType">Garment Type: </label>
-          <select
-            name="garmType"
-            defaultValue="top"
-            value={garmType}
-            onChange={(e) => setGarmType(e.target.value)}
-          >
-            <option value="top">Top</option>
-            <option value="bottom">Bottoms</option>
-            <option value="outerwear">Outerwear</option>
-            <option value="footwear">Footwear</option>
-          </select>
+        <div className="formItem">
+          <FormControl style={{ minWidth: 120 }}>
+            <InputLabel id="garmTypeLabel">Garment Type:</InputLabel>
+            <Select
+              labelId="garmTypeLabel"
+              id="garmType"
+              value={garmType}
+              onChange={(e) => setGarmType(e.target.value)}
+            >
+              <MenuItem value="top">Top</MenuItem>
+              <MenuItem value="bottoms">Bottoms</MenuItem>
+              <MenuItem value="outerwear">Outerwear</MenuItem>
+              <MenuItem value="footwear">Footwear</MenuItem>
+              <MenuItem value="accessories">Accessories</MenuItem>
+            </Select>
+          </FormControl>
         </div>
         {/* Season */}
-        <div>
-          <label htmlFor="garmSeason">Season: </label>
-          <select
-            name="garmSeason"
-            value={garmSeason}
-            defaultValue="all"
-            onChange={(e) => setGarmSeason(e.target.value)}
-          >
-            <option value="all">All Seasons</option>
-            <option value="SS">Spring/Summer</option>
-            <option value="FW">Fall/Winter</option>
-          </select>
+        <div className="formItem">
+          <FormControl style={{ minWidth: 120 }}>
+            <InputLabel id="garmSeasonLabel">Season:</InputLabel>
+            <Select
+              labelId="garmSeasonLabel"
+              id="garmSeason"
+              value={garmSeason}
+              onChange={(e) => setGarmSeason(e.target.value)}
+            >
+              <MenuItem value="all">All Seasons</MenuItem>
+              <MenuItem value="ss">Spring/Summer</MenuItem>
+              <MenuItem value="fw">Fall/Winter</MenuItem>
+            </Select>
+          </FormControl>
         </div>
         {/* Condition */}
-        <div>
-          <input
-            checked={garmCondition === "new"}
-            id="new"
-            type="radio"
-            name="condition"
-            value="new"
-            onChange={(e) => setGarmCondition(e.target.value)}
-          ></input>
-          <label htmlFor="new">New</label>
-          <input
-            checked={garmCondition === "used"}
-            id="used"
-            type="radio"
-            name="condition"
-            value="used"
-            onChange={(e) => setGarmCondition(e.target.value)}
-          ></input>
-          <label htmlFor="used">Secondhand</label>
-          <input
-            checked={garmCondition === "vintage"}
-            id="vintage"
-            type="radio"
-            name="condition"
-            value="vintage"
-            onChange={(e) => setGarmCondition(e.target.value)}
-          ></input>
-          <label htmlFor="vintage">Vintage</label>
+        <div className="formItem">
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Condition:</FormLabel>
+            <RadioGroup
+              aria-label="condition"
+              name="condition"
+              value={garmCondition}
+              onChange={(e) => setGarmCondition(e.target.value)}
+            >
+              <FormControlLabel value="new" control={<Radio />} label="New" />
+              <FormControlLabel value="used" control={<Radio />} label="Used" />
+              <FormControlLabel
+                value="vintage"
+                control={<Radio />}
+                label="Vintage"
+              />
+            </RadioGroup>
+          </FormControl>
         </div>
         {/* Owned */}
-        <div>
-          <input
-            checked={garmOwn === "true" ? true : false}
-            id="own"
-            type="radio"
-            name="owned"
-            value={true}
-            onChange={(e) => {
-              console.log(garmOwn);
-              setGarmOwn(e.target.value);
-            }}
-          ></input>
-          <label htmlFor="own">I Own This</label>
-          <input
-            checked={garmOwn === "false" ? true : false}
-            id="want"
-            type="radio"
-            name="owned"
-            value={false}
-            onChange={(e) => {
-              console.log(garmOwn);
-              setGarmOwn(e.target.value);
-            }}
-          ></input>
-          <label htmlFor="want">I Want This</label>
+        <div className="formItem">
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Owned:</FormLabel>
+            <RadioGroup
+              aria-label="owned"
+              name="owned"
+              value={garmOwn}
+              onChange={(e) => {
+                setGarmOwn(e.target.value);
+              }}
+            >
+              <FormControlLabel
+                checked={garmOwn === "true" ? true : false}
+                value={true}
+                control={<Radio />}
+                label="I Own This"
+              />
+              <FormControlLabel
+                checked={garmOwn === "false" ? true : false}
+                value={false}
+                control={<Radio />}
+                label="I Want This"
+              />
+            </RadioGroup>
+          </FormControl>
         </div>
         {/* Image Link */}
-        <div>
-          <label htmlFor="garmImg">Link to an Image: </label>
-          <input
-            id="garmImg"
+        <div className="formItem">
+          <TextField
+            variant="outlined"
+            label="Link to an Image:"
             value={garmImg}
-            placeholder={`Paste a URL here!`}
+            size="small"
             onChange={(e) => setGarmImg(e.target.value)}
-          ></input>
+          />
         </div>
-        <button
+        {/* <Button
           onClick={(e) => {
             e.preventDefault();
             console.log(garms);
@@ -174,9 +197,36 @@ const AddGarm = () => {
           }}
         >
           Add Garm!
-        </button>
+        </Button> */}
       </form>
-    </>
+      <Fab
+        style={{ margin: 10, position: "right" }}
+        position="right"
+        color="primary"
+        aria-label="add"
+        onClick={(e) => {
+          e.preventDefault();
+          console.log(garms);
+          addGarm({
+            title: garmName,
+            type: garmType,
+            brand: garmBrand,
+            cost: garmPrice,
+            condition: garmCondition,
+            season: garmSeason,
+            id: garmID,
+            img: garmImg,
+            own: garmOwn === "true" ? true : false,
+          });
+          clearForm();
+          console.log(
+            `Name: ${garmName}, Brand: ${garmBrand}, Price: ${garmPrice}, Type: ${garmType}, Condition: ${garmCondition}, Img: ${garmImg}, Own: ${garmOwn}. ID: ${garmID}`
+          );
+        }}
+      >
+        <AddIcon />
+      </Fab>
+    </Paper>
   );
 };
 
