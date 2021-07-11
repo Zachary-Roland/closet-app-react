@@ -1,4 +1,5 @@
 import React from "react";
+import { Typography, Card } from "@material-ui/core";
 
 const GarmDisplay = ({
   garm,
@@ -8,7 +9,7 @@ const GarmDisplay = ({
   ownedGarms,
 }) => {
   return (
-    <div>
+    <Card>
       <h2>{garm.title}</h2>
       <h4>
         {garm.brand} - ${garm.cost} ({garm.condition})
@@ -59,7 +60,7 @@ const GarmDisplay = ({
           </button>
         )}
       </div>
-    </div>
+    </Card>
   );
 };
 
