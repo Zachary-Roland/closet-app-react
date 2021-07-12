@@ -1,6 +1,13 @@
 import React, { useContext, useMemo, useState } from "react";
 import GarmDisplay from "./GarmDisplay";
 import { GarmsContext } from "../context/GarmContext";
+import {
+  Paper,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@material-ui/core";
 
 //  This container will filter and show either owned or wanted garments
 //  add state and selector to pick between owned and wanted
@@ -19,9 +26,21 @@ const GarmsContainer = () => {
     return garms.filter((val) => val.own === false);
   }, [garms, closetSelect]);
   return (
-    <>
-      <div>
-        <label>Show: </label>
+    <div className="flex rowWrap flexCenter">
+      <div className="select flex100">
+        <FormControl>
+          <InputLabel id="closetSelectLabel">Show:</InputLabel>
+          <Select
+            labelId="closetSelectLabel"
+            id="closetSelect"
+            value={closetSelect}
+            onChange={(e) => setClosetSelect(e.target.value)}
+          >
+            <MenuItem value="own">Owned</MenuItem>
+            <MenuItem value="want">Wanted</MenuItem>
+          </Select>
+        </FormControl>
+        {/* <label>Show: </label>
         <select
           name="closetSelect"
           defaultValue="own"
@@ -30,7 +49,7 @@ const GarmsContainer = () => {
         >
           <option value="own">Owned</option>
           <option value="want">Wanted</option>
-        </select>
+        </select> */}
       </div>
       {/* expected outcome w/ hardcoded garm state: 3 wanted, 5 owned */}
       {closetSelect === "own"
@@ -54,7 +73,7 @@ const GarmsContainer = () => {
               wantedGarms={wantedGarms}
             />
           ))}
-    </>
+    </div>
   );
 };
 
