@@ -36,15 +36,38 @@
     transform: rotate(360deg);
   }
 }
+.flex {
+  display: flex;
+}
+.rowWrap {
+  flex-flow: row wrap;
+}
+.flex100 {
+  flex-basis: 100%;
+}
+.flexCenter {
+  justify-content: center;
+}
 .margin10 {
   margin: 10px;
 }
-.login {
-  margin: 10px;
+.select {
+  min-width: 120px;
+}
+.compCenter {
+  /* margin: 10px; */
   min-height: 300px;
   min-width: 300px;
   text-align: center;
 }
 .margin50 {
   margin: 50px;
+}
+.garmCard {
+  flex-basis: 40%;
+  min-width: 250px;
+  padding: 10px;
+}
+.cardImg {
+  width: 100%;
 }
