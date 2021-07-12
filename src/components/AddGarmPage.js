@@ -45,51 +45,55 @@ const AddGarm = () => {
   };
   return (
     <Slide direction="right" in={true} mountOnEnter unmountOnExit>
-      <Paper className="margin10">
-        <form>
-          {/* Form to input new garment info. Should include Name, Brand, Price Paid, Type, & Condition, and Season, and Owned/Want */}
-          <div className="margin10">
-            <Typography variant="h3" component="h1">
-              Add a Garm!
-            </Typography>
-          </div>
-          {/* Garment Name */}
-          <div className="margin10">
-            <TextField
-              variant="outlined"
-              label="Garment Name:"
-              value={garmName}
-              size="small"
-              onChange={(e) => setGarmName(e.target.value)}
-            />
-          </div>
-          {/* Brand */}
-          <div className="margin10">
-            <TextField
-              variant="outlined"
-              label="Brand:"
-              value={garmBrand}
-              onChange={(e) => setGarmBrand(e.target.value)}
-              size="small"
-            />
-          </div>
-          {/* Price */}
-          <div className="margin10">
-            <TextField
-              variant="outlined"
-              label="Price:"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">$</InputAdornment>
-                ),
-              }}
-              size="small"
-              value={garmPrice}
-              onChange={(e) => setGarmPrice(e.target.value)}
-            />
-          </div>
-          {/* Type */}
-          <div className="margin10">
+      <Paper className="margin10 flex rowWrap flexCenter">
+        {/* Form to input new garment info. Should include Name, Brand, Price Paid, Type, & Condition, and Season, and Owned/Want */}
+        <div className="margin10 flex100 flex flexCenter">
+          <Typography variant="h3" component="h1">
+            Add a Garm!
+          </Typography>
+        </div>
+        {/* Garment Name */}
+        <div className="margin10 flex100" style={{ maxWidth: 580 }}>
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Garment Name:"
+            value={garmName}
+            size="small"
+            onChange={(e) => setGarmName(e.target.value)}
+          />
+        </div>
+        {/* Brand */}
+        <div className="margin10 flex100 textField">
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Brand:"
+            value={garmBrand}
+            onChange={(e) => setGarmBrand(e.target.value)}
+            size="small"
+          />
+        </div>
+        {/* Price */}
+        <div className="margin10 flex100 textField">
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Price:"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            }}
+            size="small"
+            type="number"
+            value={garmPrice}
+            onChange={(e) => setGarmPrice(e.target.value)}
+          />
+        </div>
+        {/* Type */}
+        <div className="flex flex100">
+          <div className="margin10 flex50 flex flexCenter">
             <FormControl style={{ minWidth: 120 }}>
               <InputLabel id="garmTypeLabel">Garment Type:</InputLabel>
               <Select
@@ -107,7 +111,7 @@ const AddGarm = () => {
             </FormControl>
           </div>
           {/* Season */}
-          <div className="margin10">
+          <div className="margin10 flex50 flex flexCenter">
             <FormControl style={{ minWidth: 120 }}>
               <InputLabel id="garmSeasonLabel">Season:</InputLabel>
               <Select
@@ -122,8 +126,10 @@ const AddGarm = () => {
               </Select>
             </FormControl>
           </div>
-          {/* Condition */}
-          <div className="margin10">
+        </div>
+        {/* Condition */}
+        <div className="flex flex100">
+          <div className="margin10 flex50 flex flexCenter">
             <FormControl component="fieldset">
               <FormLabel component="legend">Condition:</FormLabel>
               <RadioGroup
@@ -147,7 +153,7 @@ const AddGarm = () => {
             </FormControl>
           </div>
           {/* Owned */}
-          <div className="margin10">
+          <div className="margin10 flex50 flex flexCenter">
             <FormControl component="fieldset">
               <FormLabel component="legend">Owned:</FormLabel>
               <RadioGroup
@@ -162,78 +168,58 @@ const AddGarm = () => {
                   checked={garmOwn === "true" ? true : false}
                   value={true}
                   control={<Radio />}
-                  label="I Own This"
+                  label="Owned"
                 />
                 <FormControlLabel
                   checked={garmOwn === "false" ? true : false}
                   value={false}
                   control={<Radio />}
-                  label="I Want This"
+                  label="Wanted"
                 />
               </RadioGroup>
             </FormControl>
           </div>
-          {/* Image Link */}
-          <div className="margin10">
-            <TextField
-              variant="outlined"
-              label="Link to an Image:"
-              value={garmImg}
-              size="small"
-              onChange={(e) => setGarmImg(e.target.value)}
-            />
-          </div>
-          {/* <Button
-          onClick={(e) => {
-            e.preventDefault();
-            console.log(garms);
-            addGarm({
-              title: garmName,
-              type: garmType,
-              brand: garmBrand,
-              cost: garmPrice,
-              condition: garmCondition,
-              season: garmSeason,
-              id: "9",
-              img: garmImg,
-              own: garmOwn === "true" ? true : false,
-            });
-            clearForm();
-            console.log(
-              `Name: ${garmName}, Brand: ${garmBrand}, Price: ${garmPrice}, Type: ${garmType}, Condition: ${garmCondition}, Img: ${garmImg}, Own: ${garmOwn}`
-            );
-          }}
-        >
-          Add Garm!
-        </Button> */}
-        </form>
-        <Fab
-          style={{ margin: 10, position: "right" }}
-          position="right"
-          color="primary"
-          aria-label="add"
-          onClick={(e) => {
-            e.preventDefault();
-            console.log(garms);
-            addGarm({
-              title: garmName,
-              type: garmType,
-              brand: garmBrand,
-              cost: garmPrice,
-              condition: garmCondition,
-              season: garmSeason,
-              id: garmID,
-              img: garmImg,
-              own: garmOwn === "true" ? true : false,
-            });
-            clearForm();
-            console.log(
-              `Name: ${garmName}, Brand: ${garmBrand}, Price: ${garmPrice}, Type: ${garmType}, Condition: ${garmCondition}, Img: ${garmImg}, Own: ${garmOwn}. ID: ${garmID}`
-            );
-          }}
-        >
-          <AddIcon />
-        </Fab>
+        </div>
+        {/* Image Link */}
+        <div className="margin10 flex100 textField">
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Link to an Image:"
+            value={garmImg}
+            size="small"
+            onChange={(e) => setGarmImg(e.target.value)}
+          />
+        </div>
+        <div className="flex flex100 flexEnd">
+          <Fab
+            style={{ margin: 10, position: "right" }}
+            position="right"
+            color="primary"
+            aria-label="add"
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(garms);
+              addGarm({
+                title: garmName,
+                type: garmType,
+                brand: garmBrand,
+                cost: garmPrice,
+                condition: garmCondition,
+                season: garmSeason,
+                id: garmID,
+                img: garmImg,
+                own: garmOwn === "true" ? true : false,
+              });
+              clearForm();
+              console.log(
+                `Name: ${garmName}, Brand: ${garmBrand}, Price: ${garmPrice}, Type: ${garmType}, Condition: ${garmCondition}, Img: ${garmImg}, Own: ${garmOwn}. ID: ${garmID}`
+              );
+            }}
+          >
+            <AddIcon />
+          </Fab>
+        </div>
       </Paper>
     </Slide>
   );
