@@ -14,7 +14,7 @@ const Login = () => {
   const { login } = useContext(UserContext);
   const history = useHistory();
   return (
-    <Paper className="login">
+    <Paper className="margin10 compCenter">
       <form>
         <Typography variant="h3" component="h3">
           Login
