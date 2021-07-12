@@ -19,7 +19,7 @@ const Login = () => {
   // used to navigate on login
   const history = useHistory();
   return (
-    <Slide direction="right" in={true} mountOnEnter unmountOnExit>
+    <Slide direction="right" in={load} mountOnEnter unmountOnExit>
       <Paper className="margin10 compCenter">
         <form>
           <Typography variant="h3" component="h3">
