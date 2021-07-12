@@ -45,8 +45,17 @@
 .flex100 {
   flex-basis: 100%;
 }
+.flex50 {
+  flex-basis: 41%;
+}
 .flexCenter {
   justify-content: center;
+}
+.flexSpaceEven {
+  justify-content: space-evenly;
+}
+.flexEnd {
+  justify-content: flex-end;
 }
 .margin10 {
   margin: 10px;
@@ -70,4 +79,7 @@
 }
 .cardImg {
   width: 100%;
+}
+.textField {
+  max-width: 280px;
 }
