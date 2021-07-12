@@ -1,5 +1,8 @@
+// Imports for React
 import React from "react";
+// Imports for Components
 import GarmsContainer from "./GarmsContainer";
+// Imports for Material UI
 import { Paper, Typography, Slide } from "@material-ui/core";
 
 const Wardrobe = () => {

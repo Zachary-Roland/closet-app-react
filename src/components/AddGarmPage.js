@@ -1,5 +1,8 @@
+// Imports for React
 import React, { useContext, useState } from "react";
+// Imports for Context
 import { GarmsContext } from "../context/GarmContext";
+// Imports for Material UI
 import {
   Paper,
   Typography,

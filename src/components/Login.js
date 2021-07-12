@@ -1,6 +1,9 @@
+// Imports for React
 import React, { useState, useContext } from "react";
+// Imports for Material UI
 import { Typography, TextField, Button, Paper, Slide } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+// Imports for Context
 import { UserContext } from "../context";
 
 const Login = () => {

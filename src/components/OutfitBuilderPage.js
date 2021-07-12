@@ -1,4 +1,6 @@
+// Imports for React
 import React from "react";
+// Imports for Material UI
 import { Slide, CircularProgress, Paper, Typography } from "@material-ui/core";
 import useFetch from "../hooks/useFetch";
 
