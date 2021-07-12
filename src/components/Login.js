@@ -4,18 +4,22 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../context";
 
 const Login = () => {
+  // states for username and password fields
   const [userInput, setUserInput] = useState("");
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
   const [errorUserMsg, setErrorUserMsg] = useState("");
   const [errorPassMsg, setErrorPassMsg] = useState("");
-  const [load, setLoad] = useState(true);
   const ErrorMsg = "Must be at least 4 characters";
+  // state for animation
+  const [load, setLoad] = useState(true);
+  // importing login function
   const { login } = useContext(UserContext);
+  // used to navigate on login
   const history = useHistory();
   return (
-    <Slide direction="right" in={load} mountOnEnter unmountOnExit>
+    <Slide direction="right" in={true} mountOnEnter unmountOnExit>
       <Paper className="margin10 compCenter">
         <form>
           <Typography variant="h3" component="h3">
