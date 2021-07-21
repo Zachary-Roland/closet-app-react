@@ -104,9 +104,9 @@ export function GarmsProvider(props) {
       return curr.map((val) => {
         if (val.id === id) {
           let copy = { ...val };
-          console.log(copy);
+          // console.log(copy);
           copy[key] = newVal;
-          console.log(copy);
+          // console.log(copy);
           //   console.log(newVal, copy, copy[key]);
           //   return (copy[key] = newVal);
           return copy;

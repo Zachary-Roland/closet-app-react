@@ -25,7 +25,7 @@ export default function useFetch() {
           throw response;
         }
       } catch (e) {
-        console.log(e);
+        // console.log(e);
         setError("Something went wrong. Please try again later");
       } finally {
         setLoading(false);

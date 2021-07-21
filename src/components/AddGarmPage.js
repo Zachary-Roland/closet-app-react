@@ -202,7 +202,7 @@ const AddGarm = () => {
             aria-label="add"
             onClick={(e) => {
               e.preventDefault();
-              console.log(garms);
+              // console.log(garms);
               addGarm({
                 title: garmName,
                 type: garmType,
