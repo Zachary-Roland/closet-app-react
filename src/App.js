@@ -1,6 +1,6 @@
 import "./App.css";
 // Imports for React
-import React, { useContext, useState, useStyles } from "react";
+import React, { useContext, useEffect, useState, useStyles } from "react";
 import {
   BrowserRouter as Router,
   NavLink,
@@ -12,17 +12,18 @@ import {
 import "@fontsource/roboto";
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import ProtectedRoute from "./shared/ProtectedRoute";
 import a11yProps from "./shared/A11yProps";
 import TabPanel from "./shared/TabPanel";
 import { AppBar, Tabs, Tab, Box, Typography } from "@material-ui/core";
 // Imports for Context
-import { UserContext } from "./context";
+import { GarmsContext, UserContext, NeedsContext } from "./context";
 // Imports for Components
+import ProtectedRoute from "./shared/ProtectedRoute";
 import Login from "./components/Login";
 import AddGarm from "./components/AddGarmPage";
 import OutfitBuilder from "./components/OutfitBuilderPage";
 import Wardrobe from "./components/WardrobePage";
+import useFetch from "./hooks/useFetch";
 
 const oliveAqua = createTheme({
   palette: {
@@ -41,13 +42,31 @@ const oliveAqua = createTheme({
   },
 });
 function App() {
+  const { callAPI: getGarms } = useFetch("GET");
   // Local value state used for Tabs Navigation
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   // bringing in User context
-  const { user, logout } = useContext(UserContext);
+  const { user, logout, user_id } = useContext(UserContext);
+  const { clearGarms, setGarms } = useContext(GarmsContext);
+  const { setNeeds, clearNeeds } = useContext(NeedsContext);
+
+  useEffect(() => {
+    if (user_id === null) {
+      return;
+    }
+    async function call() {
+      const res = await getGarms("/api/garms/user");
+      if (!res.success) {
+        return console.error(res.error);
+      }
+      setGarms(res.data);
+    }
+    call();
+  }, [user_id]);
+
   return (
     <ThemeProvider theme={oliveAqua}>
       <Router>
@@ -99,6 +118,8 @@ function App() {
                   component={NavLink}
                   onClick={() => {
                     logout();
+                    clearGarms();
+                    clearNeeds();
                   }}
                   {...a11yProps(4)}
                 />
