@@ -24,9 +24,8 @@ const Login = () => {
   // used to navigate on login
   const history = useHistory();
   // A useEffect so that on component unmount, exit animation is triggered.
-  //
   useEffect(() => {
-    return setLoad(false);
+    return () => setLoad(false);
   }, []);
   return (
     <Slide
