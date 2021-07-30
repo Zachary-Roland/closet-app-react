@@ -3,14 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { GarmsProvider, UserProvider } from "./context";
+import { GarmsProvider, NeedsProvider, UserProvider } from "./context";
 
 ReactDOM.render(
-  <UserProvider>
-    <GarmsProvider>
-      <App />
-    </GarmsProvider>
-  </UserProvider>,
+  <NeedsProvider>
+    <UserProvider>
+      <GarmsProvider>
+        <App />
+      </GarmsProvider>
+    </UserProvider>
+  </NeedsProvider>,
   document.getElementById("root")
 );
 
