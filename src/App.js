@@ -51,7 +51,7 @@ function App() {
   // bringing in User context
   const { user, logout, user_id } = useContext(UserContext);
   const { clearGarms, setGarms } = useContext(GarmsContext);
-  const { setNeeds, clearNeeds } = useContext(NeedsContext);
+  const { setNeeds } = useContext(NeedsContext);
 
   useEffect(() => {
     if (user_id === null) {
@@ -119,7 +119,7 @@ function App() {
                   onClick={() => {
                     logout();
                     clearGarms();
-                    clearNeeds();
+                    setNeeds([]);
                   }}
                   {...a11yProps(4)}
                 />
