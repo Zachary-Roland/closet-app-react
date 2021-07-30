@@ -17,8 +17,7 @@ const GarmsContainer = () => {
   // closetSelect state is used to show either owned or wanted items.
   const [closetSelect, setClosetSelect] = useState("own");
   const { garms, deleteGarm, toggleOwn } = useContext(GarmsContext);
-  // TODO these memos need to update when the toggleOwn function is run.
-  // ! Currently they update but are not moved into the other array..
+  // these memos update when the toggleOwn function is run.
   const ownedGarms = useMemo(() => {
     return garms.filter((val) => val.own === true);
   }, [garms, closetSelect]);
