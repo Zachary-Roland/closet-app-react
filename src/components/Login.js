@@ -13,9 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
-  const [errorUserMsg, setErrorUserMsg] = useState("");
-  const [errorPassMsg, setErrorPassMsg] = useState("");
-  const ErrorMsg = "Must be at least 4 (but no more than 20) characters";
+  const errorMsg = "Must be at least 4 (but no more than 20) characters";
   const { callAPI: loginCall } = useFetch("POST");
   // state for animation
   const [load, setLoad] = useState(true);
@@ -43,7 +41,7 @@ const Login = () => {
             <TextField
               variant="outlined"
               error={errorUser}
-              helperText={errorUserMsg}
+              helperText={errorUser ? errorMsg : null}
               label="Username:"
               value={username}
               onChange={(e) => setusername(e.target.value)}
@@ -54,7 +52,7 @@ const Login = () => {
               variant="outlined"
               type="password"
               error={errorPass}
-              helperText={errorPassMsg}
+              helperText={errorPass ? errorMsg : null}
               label="Password:"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -76,8 +74,6 @@ const Login = () => {
               ) {
                 setErrorUser(false);
                 setErrorPass(false);
-                setErrorPassMsg("");
-                setErrorUserMsg("");
                 let res = await loginCall("/api/users/login", {
                   username,
                   password,
@@ -89,11 +85,9 @@ const Login = () => {
               }
               if (username.length <= 4 || username.length > 20) {
                 setErrorUser(true);
-                setErrorUserMsg(ErrorMsg);
               }
               if (password.length <= 4 || password.length > 20) {
                 setErrorPass(true);
-                setErrorPassMsg(ErrorMsg);
               }
             }}
           >
