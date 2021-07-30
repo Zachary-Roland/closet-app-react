@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const baseUrl =
   "https://api.unsplash.com/photos/random?query=mens%fashion&client_id=xBznWZ7Lr83Rj0-FpG2-A5fYDhPvE1vxNxHSb8xIKKw"; // If all of them go to something like https://www.omdb.api this would go there
 
-export default function useFetch() {
+export default function useFetch(method) {
   async function callAPI(url, body = null) {
     let opts = {
       method,
