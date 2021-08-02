@@ -121,12 +121,13 @@ export function GarmsProvider(props) {
     },
     [edit]
   );
-  const changeName = useCallback(
-    (id, newName) => {
-      edit(id, "name", newName);
-    },
-    [edit]
-  );
+  //! version of edit function to change the name of a garment NYI
+  // const changeName = useCallback(
+  //   (id, newName) => {
+  //     edit(id, "name", newName);
+  //   },
+  //   [edit]
+  // );
 
   return (
     <GarmsContext.Provider value={{ garms, addGarm, deleteGarm, toggleOwn }}>

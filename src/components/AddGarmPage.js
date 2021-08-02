@@ -15,7 +15,6 @@ import {
   MenuItem,
   Select,
   Radio,
-  Button,
   Slide,
   Fab,
 } from "@material-ui/core";
@@ -34,7 +33,7 @@ const AddGarm = () => {
   const [garmSeason, setGarmSeason] = useState("all");
   const [garmOwn, setGarmOwn] = useState("true");
   // importing garm context
-  const { garms, addGarm } = useContext(GarmsContext);
+  const { addGarm } = useContext(GarmsContext);
   const clearForm = () => {
     setGarmName("");
     setGarmType("top");

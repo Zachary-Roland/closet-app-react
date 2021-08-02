@@ -1,13 +1,7 @@
 import React, { useContext, useMemo, useState } from "react";
 import GarmDisplay from "./GarmDisplay";
 import { GarmsContext } from "../context/GarmContext";
-import {
-  Paper,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@material-ui/core";
+import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 
 //  This container will filter and show either owned or wanted garments
 //  add state and selector to pick between owned and wanted

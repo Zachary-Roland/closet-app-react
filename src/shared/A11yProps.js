@@ -1,5 +1,3 @@
-import React from "react";
-
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
