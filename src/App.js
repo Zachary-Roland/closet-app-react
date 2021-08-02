@@ -50,7 +50,7 @@ function App() {
   };
   // bringing in User context
   const { user, logout, user_id } = useContext(UserContext);
-  const { setGarms } = useContext(GarmsContext);
+  const { garms, setGarms } = useContext(GarmsContext);
   const { setNeeds } = useContext(NeedsContext);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ function App() {
       setGarms(res.data);
     }
     call();
-  }, [user_id]);
+  }, [user_id, garms]);
 
   return (
     <ThemeProvider theme={oliveAqua}>
