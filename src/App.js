@@ -42,7 +42,7 @@ const oliveAqua = createTheme({
   },
 });
 function App() {
-  const { callAPI: getGarms } = useFetch("GET");
+  const { callAPI: getGarms } = useFetch("POST");
   // Local value state used for Tabs Navigation
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
@@ -58,14 +58,15 @@ function App() {
       return;
     }
     async function call() {
-      const res = await getGarms("/api/garms/user");
+      const res = await getGarms("/api/garms/user", { user_id });
+      console.log(res);
       if (!res.success) {
         return console.error(res.error);
       }
       setGarms(res.data);
     }
     call();
-  }, [user_id, garms]);
+  }, [user_id]);
 
   return (
     <ThemeProvider theme={oliveAqua}>
