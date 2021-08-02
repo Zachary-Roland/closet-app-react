@@ -23,6 +23,7 @@ export default function useFetch(method) {
         throw response;
       }
     } catch (err) {
+      console.log(err);
       return { error: "Something went wrong, please try again later..." };
     }
   }

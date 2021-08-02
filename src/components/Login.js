@@ -81,6 +81,7 @@ const Login = () => {
                 });
                 if (res.data) {
                   setLoad(false);
+                  console.log(res.data.username, res.data.id);
                   setTimeout(() => {
                     login(res.data.username, res.data.id);
                     history.push("/addGarm");
