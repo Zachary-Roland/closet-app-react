@@ -13,7 +13,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
-  const errorMsg = "Must be at least 4 (but no more than 20) characters";
+  const defaultErr = "Must be at least 4 (but no more than 20) characters";
+  const [errorMsg, setErrorMsg] = useState(defaultErr);
   const { callAPI: loginCall } = useFetch("POST");
   // state for animation
   const [load, setLoad] = useState(true);
@@ -78,15 +79,24 @@ const Login = () => {
                   username,
                   password,
                 });
-                setTimeout(() => {
-                  login(res.data.username, res.data.id);
-                  history.push("/addGarm");
-                }, 500);
+                if (res.data) {
+                  setLoad(false);
+                  setTimeout(() => {
+                    login(res.data.username, res.data.id);
+                    history.push("/addGarm");
+                  }, 500);
+                } else {
+                  setErrorMsg("Invalid username or password");
+                  setErrorUser(true);
+                  setErrorPass(true);
+                }
               }
               if (username.length <= 4 || username.length > 20) {
+                setErrorMsg(defaultErr);
                 setErrorUser(true);
               }
               if (password.length <= 4 || password.length > 20) {
+                setErrorMsg(defaultErr);
                 setErrorPass(true);
               }
             }}
