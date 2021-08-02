@@ -2,6 +2,7 @@
 import React, { useContext, useState } from "react";
 // Imports for Context
 import { GarmsContext } from "../context/GarmContext";
+import { UserContext } from "../context";
 // Imports for Material UI
 import {
   Paper,
@@ -24,7 +25,7 @@ import { InputAdornment } from "@material-ui/core";
 const AddGarm = () => {
   // states for constructing Garm object
   const [garmName, setGarmName] = useState("");
-  const [garmID, setGarmID] = useState(9);
+  // const [garmID, setGarmID] = useState(9);
   const [garmType, setGarmType] = useState("top");
   const [garmCondition, setGarmCondition] = useState("new");
   const [garmBrand, setGarmBrand] = useState("");
@@ -34,6 +35,7 @@ const AddGarm = () => {
   const [garmOwn, setGarmOwn] = useState("true");
   // importing garm context
   const { addGarm } = useContext(GarmsContext);
+  const { user_id } = useContext(UserContext);
   const clearForm = () => {
     setGarmName("");
     setGarmType("top");
@@ -43,7 +45,7 @@ const AddGarm = () => {
     setGarmSeason("all");
     setGarmImg("");
     setGarmOwn("true");
-    setGarmID(garmID + 1);
+    // setGarmID(garmID + 1);
   };
   return (
     <Slide direction="right" in={true} mountOnEnter unmountOnExit>
@@ -203,20 +205,23 @@ const AddGarm = () => {
               e.preventDefault();
               // console.log(garms);
               addGarm({
-                title: garmName,
-                type: garmType,
-                brand: garmBrand,
-                cost: garmPrice,
-                condition: garmCondition,
-                season: garmSeason,
-                id: garmID,
-                img: garmImg,
-                own: garmOwn === "true" ? true : false,
+                user_id,
+                garm: {
+                  title: garmName,
+                  type: garmType,
+                  brand: garmBrand,
+                  cost: garmPrice,
+                  condition: garmCondition,
+                  season: garmSeason,
+                  // id: garmID,
+                  img: garmImg,
+                  own: garmOwn === "true" ? true : false,
+                },
               });
               clearForm();
-              console.log(
-                `Name: ${garmName}, Brand: ${garmBrand}, Price: ${garmPrice}, Type: ${garmType}, Condition: ${garmCondition}, Img: ${garmImg}, Own: ${garmOwn}. ID: ${garmID}`
-              );
+              // console.log(
+              //   `Name: ${garmName}, Brand: ${garmBrand}, Price: ${garmPrice}, Type: ${garmType}, Condition: ${garmCondition}, Img: ${garmImg}, Own: ${garmOwn}. ID: ${garmID}`
+              // );
             }}
           >
             <AddIcon />
