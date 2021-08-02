@@ -20,6 +20,7 @@ import { GarmsContext, UserContext, NeedsContext } from "./context";
 // Imports for Components
 import ProtectedRoute from "./shared/ProtectedRoute";
 import Login from "./components/Login";
+import Signup from "./components/Signup";
 import AddGarm from "./components/AddGarmPage";
 import OutfitBuilder from "./components/OutfitBuilderPage";
 import Wardrobe from "./components/WardrobePage";
@@ -86,6 +87,12 @@ function App() {
                   component={NavLink}
                   {...a11yProps(0)}
                 />
+                <Tab
+                  label="Signup"
+                  to="/signup"
+                  component={NavLink}
+                  {...a11yProps(1)}
+                />
               </Tabs>
             )}
             {user && (
@@ -99,19 +106,19 @@ function App() {
                   label="Add Garm"
                   to="/addGarm"
                   component={NavLink}
-                  {...a11yProps(1)}
+                  {...a11yProps(2)}
                 />
                 <Tab
                   label="My Garms"
                   to="/myGarms"
                   component={NavLink}
-                  {...a11yProps(2)}
+                  {...a11yProps(3)}
                 />
                 <Tab
                   label="Fits"
                   to="/fitBuilder"
                   component={NavLink}
-                  {...a11yProps(3)}
+                  {...a11yProps(4)}
                 />
                 <Tab
                   label="Logout"
@@ -122,7 +129,7 @@ function App() {
                     setGarms([]);
                     setNeeds([]);
                   }}
-                  {...a11yProps(4)}
+                  {...a11yProps(5)}
                 />
               </Tabs>
             )}
@@ -132,6 +139,9 @@ function App() {
           <Switch>
             <ProtectedRoute path="/login" reqUser={false} loggedInUser={user}>
               <Login />
+            </ProtectedRoute>
+            <ProtectedRoute path="/signup" reqUser={false}>
+              <Signup />
             </ProtectedRoute>
             <ProtectedRoute path="/addGarm" reqUser={true}>
               {/* <TabPanel value={value} index={0}> */}
