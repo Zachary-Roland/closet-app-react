@@ -129,7 +129,9 @@ export function GarmsProvider(props) {
   // );
 
   return (
-    <GarmsContext.Provider value={{ garms, addGarm, deleteGarm, toggleOwn }}>
+    <GarmsContext.Provider
+      value={{ garms, setGarms, addGarm, deleteGarm, toggleOwn }}
+    >
       {props.children}
     </GarmsContext.Provider>
   );
