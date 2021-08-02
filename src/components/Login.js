@@ -13,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
-  const defaultErr = "Must be at least 4 (but no more than 20) characters";
+  const defaultErr = "Must be between 4 and 20 characters";
   const [errorMsg, setErrorMsg] = useState(defaultErr);
   const { callAPI: loginCall } = useFetch("POST");
   // state for animation
@@ -41,6 +41,7 @@ const Login = () => {
           <div className="margin50">
             <TextField
               variant="outlined"
+              style={{ minWidth: 250 }}
               error={errorUser}
               helperText={errorUser ? errorMsg : null}
               label="Username:"
@@ -51,6 +52,7 @@ const Login = () => {
           <div className="margin50">
             <TextField
               variant="outlined"
+              style={{ minWidth: 250 }}
               type="password"
               error={errorPass}
               helperText={errorPass ? errorMsg : null}
@@ -63,8 +65,7 @@ const Login = () => {
             variant="contained"
             color="primary"
             style={{ marginBottom: 10 }}
-            onClick={async (e) => {
-              e.preventDefault();
+            onClick={async () => {
               setErrorUser(false);
               setErrorPass(false);
               if (
