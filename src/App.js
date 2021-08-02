@@ -1,6 +1,6 @@
 import "./App.css";
 // Imports for React
-import React, { useContext, useEffect, useState, useStyles } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   NavLink,
@@ -13,8 +13,8 @@ import "@fontsource/roboto";
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import a11yProps from "./shared/A11yProps";
-import TabPanel from "./shared/TabPanel";
-import { AppBar, Tabs, Tab, Box, Typography } from "@material-ui/core";
+// import TabPanel from "./shared/TabPanel";
+import { AppBar, Tabs, Tab } from "@material-ui/core";
 // Imports for Context
 import { GarmsContext, UserContext, NeedsContext } from "./context";
 // Imports for Components
@@ -50,7 +50,7 @@ function App() {
   };
   // bringing in User context
   const { user, logout, user_id } = useContext(UserContext);
-  const { clearGarms, setGarms } = useContext(GarmsContext);
+  const { setGarms } = useContext(GarmsContext);
   const { setNeeds } = useContext(NeedsContext);
 
   useEffect(() => {
@@ -118,7 +118,7 @@ function App() {
                   component={NavLink}
                   onClick={() => {
                     logout();
-                    clearGarms();
+                    setGarms([]);
                     setNeeds([]);
                   }}
                   {...a11yProps(4)}
