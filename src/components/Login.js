@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../context";
 import useFetch from "../hooks/useFetch";
 
-const Login = () => {
+const Login = ({ setValue }) => {
   // states for username and password fields
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
@@ -119,6 +119,7 @@ const Login = () => {
               color="primary"
               style={{ marginBottom: 10, marginLeft: 5 }}
               onClick={() => {
+                setValue(1);
                 history.push("/signup");
               }}
             >
