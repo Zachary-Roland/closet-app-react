@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../context";
 import useFetch from "../hooks/useFetch";
 
-const Signup = () => {
+const Signup = ({ setValue }) => {
   // states for username and password fields
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +24,7 @@ const Signup = () => {
   const history = useHistory();
   // A useEffect so that on component unmount, exit animation is triggered.
   useEffect(() => {
+    setValue(1);
     return () => setLoad(false);
   }, []);
   return (
@@ -132,6 +133,7 @@ const Signup = () => {
               color="primary"
               style={{ marginBottom: 10, marginLeft: 5 }}
               onClick={() => {
+                setValue(0);
                 history.push("/login");
               }}
             >
