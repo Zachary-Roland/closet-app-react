@@ -14,7 +14,7 @@ import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import a11yProps from "./shared/A11yProps";
 
-import { AppBar, Tabs, Tab } from "@material-ui/core";
+import { AppBar, Tabs, Tab, Grid, Typography } from "@material-ui/core";
 
 // Imports for Context
 import { GarmsContext, UserContext, NeedsContext } from "./context";
@@ -76,67 +76,89 @@ function App() {
     <ThemeProvider theme={oliveAqua}>
       <Router>
         <nav>
-          <AppBar position="sticky">
-            {!user && (
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor="secondary"
-                variant="fullWidth"
-              >
-                <Tab
-                  label="Login"
-                  to="/login"
-                  component={NavLink}
-                  {...a11yProps(0)}
-                />
-                <Tab
-                  label="Signup"
-                  to="/signup"
-                  component={NavLink}
-                  {...a11yProps(1)}
-                />
-              </Tabs>
-            )}
-            {user && (
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor="secondary"
-                variant="fullWidth"
-              >
-                <Tab
-                  label="Add Garm"
-                  to="/addGarm"
-                  component={NavLink}
-                  {...a11yProps(0)}
-                />
-                <Tab
-                  label="My Garms"
-                  to="/myGarms"
-                  component={NavLink}
-                  {...a11yProps(1)}
-                />
-                <Tab
-                  label="Fits"
-                  to="/fitBuilder"
-                  component={NavLink}
-                  {...a11yProps(2)}
-                />
-                <Tab
-                  label="Logout"
-                  to="/login"
-                  component={NavLink}
-                  onClick={() => {
-                    logout();
-                    setGarms([]);
-                    setNeeds([]);
-                    setValue(0);
-                  }}
-                  {...a11yProps(3)}
-                />
-              </Tabs>
-            )}
+          <AppBar position="sticky" style={{ minHeight: "60px" }}>
+            <Grid container spacing={0}>
+              <Grid item xs={12} md={4} style={{ textAlign: "center" }}>
+                <Typography
+                  variant="h3"
+                  component="h6"
+                  color="inherit"
+                  style={{ fontWeight: "bold" }}
+                >
+                  My Garms!
+                </Typography>
+              </Grid>
+              {!user && (
+                <Grid item xs={12} md={8}>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="secondary"
+                    variant="fullWidth"
+                  >
+                    <Tab
+                      label="Login"
+                      to="/login"
+                      component={NavLink}
+                      style={{ minHeight: "60px" }}
+                      {...a11yProps(0)}
+                    />
+                    <Tab
+                      label="Signup"
+                      to="/signup"
+                      component={NavLink}
+                      style={{ minHeight: "60px" }}
+                      {...a11yProps(1)}
+                    />
+                  </Tabs>
+                </Grid>
+              )}
+              {user && (
+                <Grid item xs={12} md={8}>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="secondary"
+                    variant="fullWidth"
+                  >
+                    <Tab
+                      label="Add Garm"
+                      to="/addGarm"
+                      component={NavLink}
+                      style={{ minHeight: "60px" }}
+                      {...a11yProps(0)}
+                    />
+                    <Tab
+                      label="My Garms"
+                      to="/myGarms"
+                      component={NavLink}
+                      style={{ minHeight: "60px" }}
+                      {...a11yProps(1)}
+                    />
+                    <Tab
+                      label="Fits"
+                      to="/fitBuilder"
+                      component={NavLink}
+                      style={{ minHeight: "60px" }}
+                      {...a11yProps(2)}
+                    />
+                    <Tab
+                      label="Logout"
+                      to="/login"
+                      component={NavLink}
+                      style={{ minHeight: "60px" }}
+                      onClick={() => {
+                        logout();
+                        setGarms([]);
+                        setNeeds([]);
+                        setValue(0);
+                      }}
+                      {...a11yProps(3)}
+                    />
+                  </Tabs>
+                </Grid>
+              )}
+            </Grid>
           </AppBar>
         </nav>
         <main>
