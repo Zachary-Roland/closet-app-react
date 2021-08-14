@@ -60,11 +60,11 @@ function App() {
     }
     async function call() {
       const res = await getGarms("/api/garms/user", { user_id });
-      console.log(res);
+      console.log("res is:", res);
       if (!res.success) {
         return console.error(res.error);
       }
-      console.log(res.data);
+      console.log("res.data is:", res.data);
       setGarms(res.data);
     }
     call();
