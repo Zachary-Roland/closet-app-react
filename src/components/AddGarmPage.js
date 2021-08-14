@@ -21,6 +21,7 @@ import {
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { InputAdornment } from "@material-ui/core";
+import useFetch from "../hooks/useFetch";
 
 const AddGarm = () => {
   // states for constructing Garm object
@@ -36,6 +37,7 @@ const AddGarm = () => {
   // importing garm context
   const { addGarm } = useContext(GarmsContext);
   const { user_id } = useContext(UserContext);
+  const { callAPI: addGarmCall } = useFetch("POST");
   const clearForm = () => {
     setGarmName("");
     setGarmType("top");
@@ -201,32 +203,38 @@ const AddGarm = () => {
             position="right"
             color="primary"
             aria-label="add"
-            onClick={(e) => {
+            onClick={async (e) => {
               e.preventDefault();
               // console.log(garms);
-              addGarm({
+              let garm = {
+                title: garmName,
+                type: garmType,
+                brand: garmBrand,
+                cost: garmPrice,
+                condition: garmCondition,
+                season: garmSeason,
+                img: garmImg,
+                own: garmOwn === "true" ? true : false,
+              };
+              let res = await addGarmCall("/api/garms/add", {
                 user_id,
-                garm: {
-                  title: garmName,
-                  type: garmType,
-                  brand: garmBrand,
-                  cost: garmPrice,
-                  condition: garmCondition,
-                  season: garmSeason,
-                  // id: garmID,
-                  img: garmImg,
-                  own: garmOwn === "true" ? true : false,
-                },
+                garm,
               });
+              if (res.data) {
+                addGarm(res.data);
+                console.log(res.data);
+              } else console.log(res);
               clearForm();
-              // console.log(
-              //   `Name: ${garmName}, Brand: ${garmBrand}, Price: ${garmPrice}, Type: ${garmType}, Condition: ${garmCondition}, Img: ${garmImg}, Own: ${garmOwn}. ID: ${garmID}`
-              // );
             }}
           >
             <AddIcon />
           </Fab>
         </div>
+        {
+          <Typography variant="h3" component="h1">
+            Garment Added!
+          </Typography>
+        }
       </Paper>
     </Slide>
   );
