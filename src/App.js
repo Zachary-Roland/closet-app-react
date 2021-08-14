@@ -148,13 +148,13 @@ function App() {
               <Signup setValue={setValue} />
             </ProtectedRoute>
             <ProtectedRoute path="/addGarm" reqUser={true}>
-              <AddGarm />
+              <AddGarm setValue={setValue} />
             </ProtectedRoute>
             <ProtectedRoute path="/myGarms" reqUser={true}>
-              <Wardrobe />
+              <Wardrobe setValue={setValue} />
             </ProtectedRoute>
             <ProtectedRoute path="/fitBuilder" reqUser={true}>
-              <OutfitBuilder />
+              <OutfitBuilder setValue={setValue} />
             </ProtectedRoute>
             <Route path="*">
               <Redirect to="/login" />
