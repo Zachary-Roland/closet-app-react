@@ -13,8 +13,9 @@ import "@fontsource/roboto";
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import a11yProps from "./shared/A11yProps";
-// import TabPanel from "./shared/TabPanel";
+
 import { AppBar, Tabs, Tab } from "@material-ui/core";
+
 // Imports for Context
 import { GarmsContext, UserContext, NeedsContext } from "./context";
 // Imports for Components
@@ -24,6 +25,7 @@ import Signup from "./components/Signup";
 import AddGarm from "./components/AddGarmPage";
 import OutfitBuilder from "./components/OutfitBuilderPage";
 import Wardrobe from "./components/WardrobePage";
+// import useFetch hook
 import useFetch from "./hooks/useFetch";
 
 const oliveAqua = createTheme({
@@ -99,27 +101,27 @@ function App() {
             {user && (
               <Tabs
                 value={value}
+                onChange={handleChange}
                 indicatorColor="secondary"
-                // textColor="white"
                 variant="fullWidth"
               >
                 <Tab
                   label="Add Garm"
                   to="/addGarm"
                   component={NavLink}
-                  {...a11yProps(2)}
+                  {...a11yProps(0)}
                 />
                 <Tab
                   label="My Garms"
                   to="/myGarms"
                   component={NavLink}
-                  {...a11yProps(3)}
+                  {...a11yProps(1)}
                 />
                 <Tab
                   label="Fits"
                   to="/fitBuilder"
                   component={NavLink}
-                  {...a11yProps(4)}
+                  {...a11yProps(2)}
                 />
                 <Tab
                   label="Logout"
@@ -129,8 +131,9 @@ function App() {
                     logout();
                     setGarms([]);
                     setNeeds([]);
+                    setValue(0);
                   }}
-                  {...a11yProps(5)}
+                  {...a11yProps(3)}
                 />
               </Tabs>
             )}
@@ -139,25 +142,19 @@ function App() {
         <main>
           <Switch>
             <ProtectedRoute path="/login" reqUser={false} loggedInUser={user}>
-              <Login />
+              <Login setValue={setValue} />
             </ProtectedRoute>
             <ProtectedRoute path="/signup" reqUser={false}>
-              <Signup />
+              <Signup setValue={setValue} />
             </ProtectedRoute>
             <ProtectedRoute path="/addGarm" reqUser={true}>
-              {/* <TabPanel value={value} index={0}> */}
               <AddGarm />
-              {/* </TabPanel> */}
             </ProtectedRoute>
             <ProtectedRoute path="/myGarms" reqUser={true}>
-              {/* <TabPanel value={value} index={1}> */}
               <Wardrobe />
-              {/* </TabPanel> */}
             </ProtectedRoute>
             <ProtectedRoute path="/fitBuilder" reqUser={true}>
-              {/* <TabPanel value={value} index={2}> */}
               <OutfitBuilder />
-              {/* </TabPanel> */}
             </ProtectedRoute>
             <Route path="*">
               <Redirect to="/login" />
