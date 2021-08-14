@@ -1,5 +1,5 @@
 // Imports for React
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // Imports for Context
 import { GarmsContext } from "../context/GarmContext";
 import { UserContext } from "../context";
@@ -23,7 +23,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { InputAdornment } from "@material-ui/core";
 import useFetch from "../hooks/useFetch";
 
-const AddGarm = () => {
+const AddGarm = ({ setValue }) => {
   // states for constructing Garm object
   const [garmName, setGarmName] = useState("");
   // const [garmID, setGarmID] = useState(9);
@@ -49,6 +49,9 @@ const AddGarm = () => {
     setGarmOwn("true");
     // setGarmID(garmID + 1);
   };
+  useEffect(() => {
+    setValue(0);
+  }, []);
   return (
     <Slide direction="right" in={true} mountOnEnter unmountOnExit>
       <Paper className="margin10 flex rowWrap flexCenter">
