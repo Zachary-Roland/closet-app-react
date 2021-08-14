@@ -64,6 +64,7 @@ function App() {
       if (!res.success) {
         return console.error(res.error);
       }
+      console.log(res.data);
       setGarms(res.data);
     }
     call();
