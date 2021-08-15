@@ -48,16 +48,16 @@ const GarmDisplay = ({
               <MenuItem onClick={handleClose}>Add a Need</MenuItem>
               <MenuItem
                 onClick={() => {
-                  deleteGarm(garm.id);
+                  deleteGarm(garm.garm_id);
                   handleClose();
                 }}
               >
                 Delete Garm
               </MenuItem>
-              {garm.own === false ? (
+              {garm.garm_own === false ? (
                 <MenuItem
                   onClick={() => {
-                    toggleOwn(garm.id, garm.own);
+                    toggleOwn(garm.garm_id, garm.garm_own);
                     handleClose();
                   }}
                 >
@@ -66,7 +66,7 @@ const GarmDisplay = ({
               ) : (
                 <MenuItem
                   onClick={() => {
-                    toggleOwn(garm.id, garm.own);
+                    toggleOwn(garm.garm_id, garm.garm_own);
                     handleClose();
                   }}
                 >
@@ -76,10 +76,10 @@ const GarmDisplay = ({
             </Menu>
           </>
         }
-        title={garm.title}
-        subheader={`${garm.brand} - $${garm.cost} (${garm.condition})`}
+        title={garm.garm_title}
+        subheader={`${garm.garm_brand} - $${garm.garm_cost} (${garm.garm_condition})`}
       ></CardHeader>
-      <CardMedia image={garm.img} component="img" className="cardImg" />
+      <CardMedia image={garm.garm_url} component="img" className="cardImg" />
       {/* <img
         src={garm.img}
         alt={`${garm.title}, ${garm.brand}, ${garm.condition}`}

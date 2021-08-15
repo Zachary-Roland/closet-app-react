@@ -34,6 +34,7 @@ const AddGarm = ({ setValue }) => {
   const [garmImg, setGarmImg] = useState("");
   const [garmSeason, setGarmSeason] = useState("all");
   const [garmOwn, setGarmOwn] = useState("true");
+  const [priceErr, setPriceErr] = useState(false);
   // importing garm context
   const { addGarm } = useContext(GarmsContext);
   const { user_id } = useContext(UserContext);
@@ -88,6 +89,8 @@ const AddGarm = ({ setValue }) => {
           <TextField
             fullWidth
             variant="outlined"
+            error={priceErr}
+            helperText={priceErr ? "That's not a number!" : null}
             label="Price:"
             InputProps={{
               startAdornment: (
@@ -95,9 +98,15 @@ const AddGarm = ({ setValue }) => {
               ),
             }}
             size="small"
-            type="number"
             value={garmPrice}
-            onChange={(e) => setGarmPrice(e.target.value)}
+            onChange={(e) => {
+              setGarmPrice(e.target.value);
+              if (isNaN(parseInt(garmPrice))) {
+                setPriceErr(true);
+              } else {
+                setPriceErr(false);
+              }
+            }}
           />
         </div>
         {/* Type */}
