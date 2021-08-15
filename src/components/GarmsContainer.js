@@ -19,10 +19,10 @@ const GarmsContainer = () => {
   const { garms, deleteGarm, toggleOwn } = useContext(GarmsContext);
   // these memos update when the toggleOwn function is run.
   const ownedGarms = useMemo(() => {
-    return garms.filter((val) => val.own === true);
+    return garms.filter((val) => val.garm_own === 1);
   }, [garms, closetSelect]);
   const wantedGarms = useMemo(() => {
-    return garms.filter((val) => val.own === false);
+    return garms.filter((val) => val.garm_own === 0);
   }, [garms, closetSelect]);
   return (
     <div className="flex rowWrap flexCenter">
@@ -49,7 +49,7 @@ const GarmsContainer = () => {
       {closetSelect === "own"
         ? ownedGarms.map((val) => (
             <GarmDisplay
-              key={val.id}
+              key={val.garm_id}
               garm={val}
               deleteGarm={deleteGarm}
               toggleOwn={toggleOwn}
@@ -59,7 +59,7 @@ const GarmsContainer = () => {
           ))
         : wantedGarms.map((val) => (
             <GarmDisplay
-              key={val.id}
+              key={val.garm_id}
               garm={val}
               deleteGarm={deleteGarm}
               toggleOwn={toggleOwn}

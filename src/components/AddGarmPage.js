@@ -219,14 +219,14 @@ const AddGarm = ({ setValue }) => {
               e.preventDefault();
               // console.log(garms);
               let garm = {
-                title: garmName,
-                type: garmType,
-                brand: garmBrand,
-                cost: garmPrice,
-                condition: garmCondition,
-                season: garmSeason,
-                img: garmImg,
-                own: garmOwn === "true" ? true : false,
+                garm_title: garmName,
+                garm_type: garmType,
+                garm_brand: garmBrand,
+                garm_cost: garmPrice,
+                garm_condition: garmCondition,
+                garm_season: garmSeason,
+                garm_url: garmImg,
+                garm_own: garmOwn === "true" ? 1 : 0,
               };
               let res = await addGarmCall("/api/garms/add", {
                 user_id,
