@@ -57,7 +57,7 @@ const AddGarm = ({ setValue }) => {
       <Paper className="margin10 flex rowWrap flexCenter">
         {/* Form to input new garment info. Should include Name, Brand, Price Paid, Type, & Condition, and Season, and Owned/Want */}
         <div className="margin10 flex100 flex flexCenter">
-          <Typography variant="h3" component="h1">
+          <Typography variant="h4" component="h4">
             Add a Garm!
           </Typography>
         </div>
@@ -233,11 +233,11 @@ const AddGarm = ({ setValue }) => {
             <AddIcon />
           </Fab>
         </div>
-        {
+        {/* {
           <Typography variant="h3" component="h1">
             Garment Added!
           </Typography>
-        }
+        } */}
       </Paper>
     </Slide>
   );

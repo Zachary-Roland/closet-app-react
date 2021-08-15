@@ -11,12 +11,18 @@ const OutfitBuilder = ({ setValue }) => {
   }, []);
   return (
     <Slide direction="right" in={true} mountOnEnter unmountOnExit>
-      <Paper className="margin10 compCenter">
-        <Typography variant="h3" component="h1">
-          Here's some random inspiration!
-        </Typography>
-        <Typography variant="h6" component="h1">
-          Eventually you'll be able to build an outfit here...
+      <Paper className="margin10 compCenter margin10 flex rowWrap flexCenter">
+        <div className="margin10 flex100 flex flexCenter">
+          <Typography variant="h4" component="h4">
+            This is the Fit Builder!
+          </Typography>
+        </div>
+        <Typography
+          variant="body1"
+          style={{ margin: "20px", maxWidth: "350px" }}
+        >
+          Eventually you'll be able to combine your added garms into groups to
+          create outfits!
         </Typography>
         {loading && <CircularProgress />}
         {data && <img src={data.urls.small}></img>}

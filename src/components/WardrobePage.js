@@ -12,7 +12,7 @@ const Wardrobe = ({ setValue }) => {
   return (
     <Slide direction="right" in={true} mountOnEnter unmountOnExit>
       <Paper className="margin10 compCenter">
-        <Typography variant="h3" component="h1">
+        <Typography variant="h4" component="h4" style={{ margin: "10px" }}>
           My Garms!
         </Typography>
         {/* Within garmscontainer choose between owned or wanted items

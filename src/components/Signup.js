@@ -36,7 +36,7 @@ const Signup = ({ setValue }) => {
     >
       <Paper className="margin10 compCenter">
         <form>
-          <Typography variant="h3" component="h3">
+          <Typography variant="h4" component="h4">
             Signup
           </Typography>
           <div className="margin50" style={{ minHeight: "80px" }}>

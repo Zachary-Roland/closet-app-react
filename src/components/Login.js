@@ -35,7 +35,7 @@ const Login = ({ setValue }) => {
     >
       <Paper className="margin10 compCenter" style={{ minHeight: "415px" }}>
         <form>
-          <Typography variant="h3" component="h3">
+          <Typography variant="h4" component="h4">
             Login
           </Typography>
           <div
