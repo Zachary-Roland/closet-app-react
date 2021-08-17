@@ -11,11 +11,10 @@ const Signup = ({ setValue }) => {
   // states for username and password fields
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
-  const [passField1, setPassField1] = useState("");
-  const [passField2, setPassField2] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [errorUser, setErrorUser] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
-  const defaultErr = "Must be between 4 and 20 characters";
+  const defaultErr = "Must be between 5 and 20 characters";
   const [errorMsg, setErrorMsg] = useState(defaultErr);
   const { callAPI: signupCall } = useFetch("POST");
   // state for animation
@@ -58,8 +57,8 @@ const Signup = ({ setValue }) => {
               error={errorPass}
               helperText={errorPass ? errorMsg : null}
               label="Password:"
-              value={passField1}
-              onChange={(e) => setPassField1(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="margin50" style={{ minHeight: "80px" }}>
@@ -70,18 +69,9 @@ const Signup = ({ setValue }) => {
               error={errorPass}
               helperText={errorPass ? errorMsg : null}
               label="Confirm Password:"
-              value={passField2}
+              value={confirm}
               onChange={(e) => {
-                setPassField2(e.target.value);
-                if (passField2 === passField1) {
-                  setErrorMsg("");
-                  setErrorPass(false);
-                  let newPass = passField2;
-                  setPassword(newPass);
-                } else {
-                  setErrorMsg("Passwords do not match!");
-                  setErrorPass(true);
-                }
+                setConfirm(e.target.value);
               }}
             />
           </div>
@@ -101,19 +91,24 @@ const Signup = ({ setValue }) => {
                 ) {
                   setErrorUser(false);
                   setErrorPass(false);
-                  let res = await signupCall("/api/users/signup", {
-                    username,
-                    password,
-                  });
-                  if (res.success) {
-                    setLoad(false);
-                    //   console.log(res.data.username, res.data.id);
-                    setTimeout(() => {
-                      history.push("/login");
-                    }, 500);
+                  if (password !== confirm) {
+                    setErrorPass(true);
+                    setErrorMsg("Passwords do not match!");
                   } else {
-                    setErrorMsg("Username already taken");
-                    setErrorUser(true);
+                    let res = await signupCall("/api/users/signup", {
+                      username,
+                      password,
+                    });
+                    if (res.success) {
+                      setLoad(false);
+                      //   console.log(res.data.username, res.data.id);
+                      setTimeout(() => {
+                        history.push("/login");
+                      }, 500);
+                    } else {
+                      setErrorMsg("Username already taken");
+                      setErrorUser(true);
+                    }
                   }
                 }
                 if (username.length <= 4 || username.length > 20) {

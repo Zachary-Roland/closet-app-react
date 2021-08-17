@@ -13,7 +13,7 @@ const Login = ({ setValue }) => {
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
-  const defaultErr = "Must be between 4 and 20 characters";
+  const defaultErr = "Must be between 5 and 20 characters";
   const [errorMsg, setErrorMsg] = useState(defaultErr);
   const { callAPI: loginCall } = useFetch("POST");
   // state for animation
