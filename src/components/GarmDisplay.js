@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Card,
   CardHeader,
@@ -8,15 +8,13 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import useFetch from "../hooks/useFetch";
+import { UserContext } from "../context";
 
-const GarmDisplay = ({
-  garm,
-  deleteGarm,
-  toggleOwn,
-  wantedGarms,
-  ownedGarms,
-}) => {
+const GarmDisplay = ({ garm, deleteGarm, toggleOwn }) => {
+  const { callAPI: deleteGarmCall } = useFetch("DELETE");
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { user_id } = useContext(UserContext);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,14 +45,18 @@ const GarmDisplay = ({
             >
               <MenuItem onClick={handleClose}>Add a Need</MenuItem>
               <MenuItem
-                onClick={() => {
-                  deleteGarm(garm.garm_id);
+                onClick={async () => {
+                  let res = await deleteGarmCall("/api/garms/delete", {
+                    user_id,
+                    garm_id: garm.garm_id,
+                  });
+                  deleteGarm(res.data);
                   handleClose();
                 }}
               >
                 Delete Garm
               </MenuItem>
-              {garm.garm_own === false ? (
+              {garm.garm_own === 0 ? (
                 <MenuItem
                   onClick={() => {
                     toggleOwn(garm.garm_id, garm.garm_own);

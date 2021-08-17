@@ -13,7 +13,7 @@ export function GarmsProvider(props) {
   const edit = useCallback((id, key, newVal) => {
     setGarms((curr) => {
       return curr.map((val) => {
-        if (val.id === id) {
+        if (val.garm_id === id) {
           let copy = { ...val };
           // console.log(copy);
           copy[key] = newVal;
@@ -28,7 +28,12 @@ export function GarmsProvider(props) {
   }, []);
   const toggleOwn = useCallback(
     (id, own) => {
-      edit(id, "own", !own);
+      if (own === 0) {
+        edit(id, "garm_own", 1);
+      }
+      if (own === 1) {
+        edit(id, "garm_own", 0);
+      }
     },
     [edit]
   );
